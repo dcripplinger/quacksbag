@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c373ts1jqg5ry"]
+
+[node name="Label" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
+theme_override_font_sizes/font_size = 24
+text = "Label"

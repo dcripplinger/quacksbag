@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://g4lqsomknjph"]
+
+[ext_resource type="PackedScene" uid="uid://c373ts1jqg5ry" path="res://components/label.tscn" id="1_j18cw"]
+[ext_resource type="Script" path="res://main/confirm_add_modal.gd" id="1_thnvd"]
+[ext_resource type="PackedScene" uid="uid://b6qhetpjqhvpf" path="res://components/button.tscn" id="2_78qfb"]
+
+[node name="ConfirmAddModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thnvd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_j18cw")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Add a potion to your bag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonGroup" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonGroup"]
+layout_mode = 2
+
+[node name="BackButton" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer" instance=ExtResource("2_78qfb")]
+layout_mode = 2
+text = "Back"
+
+[node name="EmptySpace" type="Control" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
