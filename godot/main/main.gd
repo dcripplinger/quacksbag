@@ -174,7 +174,6 @@ func _on_bag_or_aside_modal_potion_selected_in_pot(potion_index, action):
 		confirm_return_modal.show()
 		confirm_return_modal.set_potion(pot[potion_index], potion_index)
 	elif action == "aside":
-		pass
 		pot_to_aside_modal.show()
 		pot_to_aside_modal.set_potion(pot[potion_index], potion_index)
 
@@ -190,7 +189,6 @@ func _on_bag_or_pot_modal_potion_selected_in_aside(potion_index, action):
 		aside_to_bag_modal.show()
 		aside_to_bag_modal.set_potion(aside[potion_index], potion_index)
 	elif action == "pot":
-		pass
 		aside_to_pot_modal.show()
 		aside_to_pot_modal.set_potion(aside[potion_index], potion_index)
 
