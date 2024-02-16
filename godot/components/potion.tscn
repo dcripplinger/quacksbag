@@ -6,6 +6,7 @@
 custom_minimum_size = Vector2(96, 96)
 offset_right = 96.0
 offset_bottom = 96.0
+mouse_filter = 1
 texture_normal = ExtResource("1_slkbo")
 ignore_texture_size = true
 stretch_mode = 0

@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvak7q1hmwyaj"]
+
+[ext_resource type="Script" path="res://main/confirm_aside_to_pot.gd" id="1_n00uh"]
+[ext_resource type="PackedScene" uid="uid://c373ts1jqg5ry" path="res://components/label.tscn" id="2_pqrpr"]
+[ext_resource type="PackedScene" uid="uid://ciqd4g6a17e0k" path="res://components/potion.tscn" id="3_b726n"]
+[ext_resource type="PackedScene" uid="uid://b6qhetpjqhvpf" path="res://components/button.tscn" id="4_m50mf"]
+
+[node name="ConfirmAsideToPot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n00uh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TopMargin" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_pqrpr")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Place this ingredient in the pot?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Potion" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_b726n")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="EmptySpace" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonGroup" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonGroup"]
+layout_mode = 2
+
+[node name="BackButton" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer" instance=ExtResource("4_m50mf")]
+layout_mode = 2
+text = "Back"
+
+[node name="EmptySpace" type="Control" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmButton" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer" instance=ExtResource("4_m50mf")]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

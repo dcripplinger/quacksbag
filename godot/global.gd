@@ -17,9 +17,11 @@ var potion_textures = {
 	"yellow2": ResourceLoader.load("res://art/tokens/yellow2.png"),
 	"yellow4": ResourceLoader.load("res://art/tokens/yellow4.png"),
 	"orange1": ResourceLoader.load("res://art/tokens/orange1.png"),
+	"orange6": ResourceLoader.load("res://art/tokens/orange6.png"),
 	"black1": ResourceLoader.load("res://art/tokens/black1.png"),
 	"purple1": ResourceLoader.load("res://art/tokens/purple1.png"),
 	"hidden": ResourceLoader.load("res://art/tokens/hidden.png"),
+	"locoweed": ResourceLoader.load("res://art/tokens/locoweed.png"),
 }
 
 var potion_scene = ResourceLoader.load("res://components/potion.tscn")

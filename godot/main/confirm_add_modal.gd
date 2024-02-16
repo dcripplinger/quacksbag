@@ -26,6 +26,8 @@ var all_potions = [
 	"black1",
 	"purple1",
 	"orange1",
+	"orange6",
+	"locoweed",
 ]
 
 # Called when the node enters the scene tree for the first time.

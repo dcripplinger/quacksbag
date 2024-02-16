@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgalkhd0yfoom"]
+
+[ext_resource type="Script" path="res://main/bag_or_aside_modal.gd" id="1_yiq7p"]
+[ext_resource type="PackedScene" uid="uid://ciqd4g6a17e0k" path="res://components/potion.tscn" id="2_yg08k"]
+[ext_resource type="PackedScene" uid="uid://b6qhetpjqhvpf" path="res://components/button.tscn" id="3_gr6kr"]
+
+[node name="BagOrAsideModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yiq7p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TopMargin" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Potion" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_yg08k")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="EmptySpace" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonGroup" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonGroup"]
+layout_mode = 2
+
+[node name="BagButton" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer" instance=ExtResource("3_gr6kr")]
+layout_mode = 2
+text = "Put in bag"
+
+[node name="EmptySpace" type="Control" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AsideButton" parent="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer" instance=ExtResource("3_gr6kr")]
+layout_mode = 2
+text = "Set aside"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/BagButton" to="." method="_on_bag_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/AsideButton" to="." method="_on_aside_button_pressed"]

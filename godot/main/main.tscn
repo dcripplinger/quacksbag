@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk8txtgm5m6cu"]
+[gd_scene load_steps=16 format=3 uid="uid://dk8txtgm5m6cu"]
 
 [ext_resource type="PackedScene" uid="uid://b6qhetpjqhvpf" path="res://components/button.tscn" id="1_vv7oe"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_vwunk"]
@@ -8,6 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://g4lqsomknjph" path="res://main/confirm_add_modal.tscn" id="6_l2uiq"]
 [ext_resource type="PackedScene" uid="uid://344vdbyqk3nc" path="res://main/confirm_specified_draw_modal.tscn" id="7_ra8lg"]
 [ext_resource type="PackedScene" uid="uid://e73x42hr125t" path="res://main/confirm_return_to_bag_modal.tscn" id="8_cn37p"]
+[ext_resource type="PackedScene" uid="uid://c1712j081jefs" path="res://main/confirm_delete_token.tscn" id="9_e5v0l"]
+[ext_resource type="PackedScene" uid="uid://ctwuwowswgu4q" path="res://main/delete_or_draw_modal.tscn" id="10_v8lmf"]
+[ext_resource type="PackedScene" uid="uid://bgalkhd0yfoom" path="res://main/bag_or_aside_modal.tscn" id="11_dstb7"]
+[ext_resource type="PackedScene" uid="uid://bd2jvfjml1tsa" path="res://main/confirm_pot_to_aside.tscn" id="12_gfkwc"]
+[ext_resource type="PackedScene" uid="uid://b33n7kvu1j3km" path="res://main/bag_or_pot_modal.tscn" id="13_x8r7k"]
+[ext_resource type="PackedScene" uid="uid://coh2qrycflcay" path="res://main/confirm_aside_to_bag.tscn" id="14_q6i38"]
+[ext_resource type="PackedScene" uid="uid://bvak7q1hmwyaj" path="res://main/confirm_aside_to_pot.tscn" id="15_qqg16"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -29,7 +36,7 @@ grow_vertical = 2
 [node name="LeftMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.5
+anchor_right = 0.4
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
@@ -58,8 +65,8 @@ size_flags_vertical = 3
 [node name="RightMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 1.0
+anchor_left = 0.4
+anchor_right = 0.8
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
@@ -85,6 +92,36 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="AsideMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AsideMarginContainer"]
+layout_mode = 2
+
+[node name="AsideHeader" parent="AsideMarginContainer/VBoxContainer" instance=ExtResource("2_kjtnp")]
+layout_mode = 2
+text = "Aside"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AsideMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="AsideMarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="BottomMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -106,13 +143,17 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "Draw"
 
+[node name="DrawAsideButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
+layout_mode = 2
+text = "Draw aside"
+
 [node name="AddButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
 layout_mode = 2
-text = "Add new potion"
+text = "Add new"
 
 [node name="EmptyPotButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
 layout_mode = 2
-text = "Empty pot"
+text = "Bag everything"
 
 [node name="EmptySpace" type="Control" parent="BottomMarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -120,7 +161,7 @@ size_flags_horizontal = 3
 
 [node name="ShowButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("2_cdlrt")]
 layout_mode = 2
-text = "Show bag contents"
+text = "Reveal bag"
 
 [node name="NewGameButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
 layout_mode = 2
@@ -142,7 +183,36 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="ConfirmDeleteToken" parent="." instance=ExtResource("9_e5v0l")]
+visible = false
+layout_mode = 1
+
+[node name="DeleteOrDrawModal" parent="." instance=ExtResource("10_v8lmf")]
+visible = false
+layout_mode = 1
+
+[node name="BagOrAsideModal" parent="." instance=ExtResource("11_dstb7")]
+visible = false
+layout_mode = 1
+
+[node name="ConfirmPotToAside" parent="." instance=ExtResource("12_gfkwc")]
+visible = false
+layout_mode = 1
+
+[node name="BagOrPotModal" parent="." instance=ExtResource("13_x8r7k")]
+visible = false
+layout_mode = 1
+
+[node name="ConfirmAsideToBag" parent="." instance=ExtResource("14_q6i38")]
+visible = false
+layout_mode = 1
+
+[node name="ConfirmAsideToPot" parent="." instance=ExtResource("15_qqg16")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/DrawButton" to="." method="_on_draw_button_pressed"]
+[connection signal="pressed" from="BottomMarginContainer/HBoxContainer/DrawAsideButton" to="." method="_on_draw_aside_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/EmptyPotButton" to="." method="_on_empty_pot_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/ShowButton" to="." method="_on_show_button_pressed"]
@@ -152,5 +222,12 @@ layout_mode = 1
 [connection signal="potion_selected_to_add" from="ConfirmAddModal" to="." method="_on_confirm_add_modal_potion_selected_to_add"]
 [connection signal="potion_selected_to_draw" from="ConfirmSpecifiedDrawModal" to="." method="_on_confirm_specified_draw_modal_potion_selected_to_draw"]
 [connection signal="potion_selected_to_return" from="ConfirmReturnToBagModal" to="." method="_on_confirm_return_to_bag_modal_potion_selected_to_return"]
+[connection signal="potion_selected_to_delete" from="ConfirmDeleteToken" to="." method="_on_confirm_delete_token_potion_selected_to_delete"]
+[connection signal="potion_selected_in_bag" from="DeleteOrDrawModal" to="." method="_on_delete_or_draw_modal_potion_selected_in_bag"]
+[connection signal="potion_selected_in_pot" from="BagOrAsideModal" to="." method="_on_bag_or_aside_modal_potion_selected_in_pot"]
+[connection signal="potion_selected_for_pot_to_aside" from="ConfirmPotToAside" to="." method="_on_confirm_pot_to_aside_potion_selected_for_pot_to_aside"]
+[connection signal="potion_selected_in_aside" from="BagOrPotModal" to="." method="_on_bag_or_pot_modal_potion_selected_in_aside"]
+[connection signal="potion_selected_for_aside_to_bag" from="ConfirmAsideToBag" to="." method="_on_confirm_aside_to_bag_potion_selected_for_aside_to_bag"]
+[connection signal="potion_selected_for_aside_to_pot" from="ConfirmAsideToPot" to="." method="_on_confirm_aside_to_pot_potion_selected_for_aside_to_pot"]
 
 [editable path="ConfirmNewGameModal"]
