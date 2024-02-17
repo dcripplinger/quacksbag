@@ -4,5 +4,5 @@
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.54902, 0.54902, 0.54902, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "Label"

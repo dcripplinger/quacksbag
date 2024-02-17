@@ -115,9 +115,7 @@ func draw_potion_by_index(picked_index, destination="pot"):
 
 func _on_empty_pot_button_pressed():
 	bag.append_array(pot)
-	bag.append_array(aside)
 	pot = []
-	aside = []
 	set_potion_nodes()
 
 
@@ -226,3 +224,9 @@ func load_game():
 		aside = parsed_result.get("aside", [])
 		save_game.close()
 		set_potion_nodes()
+
+
+func _on_empty_aside_button_pressed():
+	bag.append_array(aside)
+	aside = []
+	set_potion_nodes()

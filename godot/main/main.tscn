@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk8txtgm5m6cu"]
+[gd_scene load_steps=17 format=3 uid="uid://dk8txtgm5m6cu"]
 
 [ext_resource type="PackedScene" uid="uid://b6qhetpjqhvpf" path="res://components/button.tscn" id="1_vv7oe"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_vwunk"]
 [ext_resource type="PackedScene" uid="uid://4bpnhugjb8md" path="res://components/check_button.tscn" id="2_cdlrt"]
 [ext_resource type="PackedScene" uid="uid://c373ts1jqg5ry" path="res://components/label.tscn" id="2_kjtnp"]
+[ext_resource type="PackedScene" uid="uid://bcves8f0cjpkf" path="res://components/empty_button.tscn" id="3_gxsqu"]
 [ext_resource type="PackedScene" uid="uid://bielxicyen0wx" path="res://main/confirm_new_game_modal.tscn" id="4_obav6"]
 [ext_resource type="PackedScene" uid="uid://g4lqsomknjph" path="res://main/confirm_add_modal.tscn" id="6_l2uiq"]
 [ext_resource type="PackedScene" uid="uid://344vdbyqk3nc" path="res://main/confirm_specified_draw_modal.tscn" id="7_ra8lg"]
@@ -78,10 +79,18 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="RightMarginContainer"]
 layout_mode = 2
 
-[node name="PotHeader" parent="RightMarginContainer/VBoxContainer" instance=ExtResource("2_kjtnp")]
+[node name="HBoxContainer" type="HBoxContainer" parent="RightMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PotHeader" parent="RightMarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_kjtnp")]
 layout_mode = 2
 text = "Pot"
 horizontal_alignment = 1
+
+[node name="EmptyPotButton" parent="RightMarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_gxsqu")]
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RightMarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -108,10 +117,18 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="AsideMarginContainer"]
 layout_mode = 2
 
-[node name="AsideHeader" parent="AsideMarginContainer/VBoxContainer" instance=ExtResource("2_kjtnp")]
+[node name="HBoxContainer" type="HBoxContainer" parent="AsideMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="AsideHeader" parent="AsideMarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_kjtnp")]
 layout_mode = 2
 text = "Aside"
 horizontal_alignment = 1
+
+[node name="EmptyAsideButton" parent="AsideMarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_gxsqu")]
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AsideMarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -150,10 +167,6 @@ text = "Draw aside"
 [node name="AddButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
 layout_mode = 2
 text = "Add new"
-
-[node name="EmptyPotButton" parent="BottomMarginContainer/HBoxContainer" instance=ExtResource("1_vv7oe")]
-layout_mode = 2
-text = "Bag everything"
 
 [node name="EmptySpace" type="Control" parent="BottomMarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -211,10 +224,11 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="RightMarginContainer/VBoxContainer/HBoxContainer/EmptyPotButton" to="." method="_on_empty_pot_button_pressed"]
+[connection signal="pressed" from="AsideMarginContainer/VBoxContainer/HBoxContainer/EmptyAsideButton" to="." method="_on_empty_aside_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/DrawButton" to="." method="_on_draw_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/DrawAsideButton" to="." method="_on_draw_aside_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
-[connection signal="pressed" from="BottomMarginContainer/HBoxContainer/EmptyPotButton" to="." method="_on_empty_pot_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/ShowButton" to="." method="_on_show_button_pressed"]
 [connection signal="pressed" from="BottomMarginContainer/HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="ConfirmNewGameModal/MarginContainer/VBoxContainer/ButtonGroup/HBoxContainer/BackButton" to="." method="_on_new_game_back_button_pressed"]
